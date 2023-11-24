@@ -37,6 +37,7 @@ def delete_product():
         print(f'Product {product} not found!')
         return
     
+
     pos_found = products.index(product)
     del products[pos_found]
     del prices[pos_found]
@@ -45,6 +46,24 @@ def show_products():
     for i in range(len(products)):
         print(f'{i+1}. {products[i]}: {prices[i]}')
 
+def search_product():
+    product = input('Enter product name to search: ')
+    # if product not in products:
+    #     print(f'Product {product} not found!')
+    #     return
+    # pos_found = products.index(product)
+
+    pos_found = -1
+    for i in range(len(products)):
+        if products[i] == product:
+            pos_found = i
+            break
+    if pos_found == -1:
+        print(f'Product {product} not found!')
+    else:
+        print(f'Product {product} ${prices[pos_found]}')
+
+    print(f'Product {product}: ${prices[pos_found]}')
 
 def print_menu():
     print('PRODUCT MANAGEMENT')
@@ -52,7 +71,8 @@ def print_menu():
     print('2. Edit product price')
     print('3. Delete product')
     print('4. Show products')
-    print('5. Quit')
+    print('5. Search')
+    print('6. Quit')
 
 def main():
     running = True
@@ -69,6 +89,8 @@ def main():
         elif choice == 4:
             show_products()
         elif choice == 5:
+            search_product()
+        elif choice == 6:
             running = False
         else:
             print('Invalid choice!')
